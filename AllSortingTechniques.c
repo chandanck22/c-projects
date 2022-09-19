@@ -61,10 +61,10 @@ void SelectionSort(int A[], int n)
 }
 
 // Quick Sort
-int Partition(int A[], int l, int h)
+int Partition(int A[], int low, int high)
 {
-    int pivot = A[l];
-    int i=l, j=h;
+    int pivot = A[low];
+    int i=low, j=high;
     do{
         do{
             i++;
@@ -77,30 +77,155 @@ int Partition(int A[], int l, int h)
             Swap(&A[i], &A[j]);
     }while(i<j);
 
-    Swap(&A[l], &A[j]);
+    Swap(&A[low], &A[j]);
     return j;
 }
-// Quick Sort
-void QuickSort(int A[], int l, int h)
+void QuickSort(int A[], int low, int high)
 {
     int j;
-    if(l<h)
+    if(low<high)
     {
-        j = Partition(A, l, h);
-        QuickSort(A,l,j);
-        QuickSort(A,j+1,h);
+        j = Partition(A, low, high);
+        QuickSort(A,low,j);
+        QuickSort(A,j+1,high);
     }
 }
 
+
+//Merge Sort
+void MergeSort(int A[], int low, int mid, int high)
+{
+    int i=low, j=mid+1, k=low;
+    int B[100];
+
+    while(i<=mid && j<=high)
+    {
+        if(A[i] < A[j])
+            B[k++] = A[i++];
+        else
+            B[k++] = A[j++];
+    }
+    for(; i<=mid; i++)
+        B[k++] = A[i];
+    for(; j<=high; j++)
+        B[k++] = A[j];
+
+    for(i=low; i<=high; i++)
+        A[i] = B[i];
+}
+void IterativeMergeSort(int A[], int n)
+{
+    int p,low,high,mid,i;
+    for(p=2; p<=n; p=p*2)
+    {
+        for(i=0; i+p-1<=n; i=i+p)
+        {
+            low=i;
+            high=i+p-1;
+            mid = (low+high)/2;
+            MergeSort(A,low,mid,high);
+        }
+    }
+    if(p/2<n)
+        MergeSort(A,0,p/2-1,n);
+}
+void RecursiveMergeSort(int A[], int low, int high)
+{
+    int mid;
+    if(low<high)
+    {
+        mid = (low+high)/2;
+        RecursiveMergeSort(A,low,mid);
+        RecursiveMergeSort(A,mid+1,high);
+        MergeSort(A,low,mid,high);
+    }
+}
+
+// Count Sort
+int FindMax(int A[], int n)
+{
+    int max = 65535;
+    int i;
+    for(i=0; i<n; i++)
+    {
+        if(A[i] > max)
+            max=A[i];
+    }
+    return max;
+}
+void CountSort(int A[], int n)
+{
+    int i,j,max,*C;
+    max = FindMax(A,n);
+    C = (int *)malloc(sizeof(int)*(max+1));
+
+    for(i=0; i<max+1; i++)
+    {
+        C[i]=0;
+    }
+    for(i=0; i<n; i++)
+    {
+        C[A[i]]++;
+    }
+    i=0;j=0;
+    while (j<max+1) {
+        if(C[j] > 0){
+            A[i++] = j;
+            C[j]--;
+        }else
+            j++;
+    }
+}
+
+/*// Bin/Bucket Sort
+void BinSort(int A[], int n)
+{
+    int max,i,j;
+    Node **Bin;
+    max = FindMax(A,n);
+    Bin = new Node *[max+1];
+    // Bin initilised with NULL
+    for(i=0; i<n; i++)
+    {
+        Insert(Bin[A[i]], A[i]) //inserting the element at the end
+    }
+
+}
+*/
+// Shell Sort
+void ShellSort(int A[], int n)
+{
+    int gap, i,j,temp;
+    for(gap=n/2; gap>=1; gap /= 2)
+    {
+        for(i=gap; i<n; i++)
+        {
+            temp = A[i];
+            j = i-gap;
+            while(j>=0 && A[j]>temp)
+            {
+                A[j+gap] = A[j];
+                j = j-gap;
+            }
+            A[j+gap] = temp;
+        }
+    }
+}
 int main()
 {
-    int A[] = {8,2,6,21,7,9,18,65535}; // int highest element
+    // int A[] = {8,2,6,21,7,9,18,65535}; // use in Quick Sort int highest element
+    int A[] = {8,2,6,21,7,9,18,25};
     int i,n=8;
 
-    // BubbleSort(A,n);
+    // BubbloweSort(A,n);
     // InsertionSort(A, n);
-    // SelectionSort(A, n);
-    QuickSort(A,0,n-1);
+    // SelowectionSort(A, n);
+    // QuickSort(A,0,n-1);
+
+    // IterativeMergeSort(A,n);
+    // CountSort(A,n);
+    // RecursiveMergeSort(A,0,n-1);
+    ShellSort(A,n);
     for(i=0; i<7; i++)
         printf(" %d\n",A[i]);
     printf("\n");
