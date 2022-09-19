@@ -177,21 +177,33 @@ void CountSort(int A[], int n)
     }
 }
 
-/*// Bin/Bucket Sort
+// Bin/Bucket Sort
 void BinSort(int A[], int n)
 {
-    int max,i,j;
-    Node **Bin;
-    max = FindMax(A,n);
-    Bin = new Node *[max+1];
+    int max = FindMax(A,n);
+    int i,j;
+    int bucket[max];
+
     // Bin initilised with NULL
+    for(i=0; i<=max; i++)
+    {
+        bucket[i] = 0;
+    }
     for(i=0; i<n; i++)
     {
-        Insert(Bin[A[i]], A[i]) //inserting the element at the end
+        bucket[A[i]]++;
+    }
+    for(i=0,j=0; i<=max; i++)
+    {
+        while(bucket[i] > 0)
+        {
+            A[j++] = i;
+            bucket[i]--;
+        }
     }
 
 }
-*/
+
 // Shell Sort
 void ShellSort(int A[], int n)
 {
@@ -225,7 +237,8 @@ int main()
     // IterativeMergeSort(A,n);
     // CountSort(A,n);
     // RecursiveMergeSort(A,0,n-1);
-    ShellSort(A,n);
+    BinSort(A, n);
+    // ShellSort(A,n);
     for(i=0; i<7; i++)
         printf(" %d\n",A[i]);
     printf("\n");
