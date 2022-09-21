@@ -223,6 +223,16 @@ void ShellSort(int A[], int n)
         }
     }
 }
+
+// printing Arrys
+void PrintArray(int A[], int n)
+{
+    for(int i=0; i<n; i++){
+        printf(" %d\t",A[i]);
+    }
+    printf("\n\n");
+}
+
 int main()
 {
     // int A[] = {8,2,6,21,7,9,18,65535}; // use in Quick Sort int highest element
@@ -237,11 +247,11 @@ int main()
     // IterativeMergeSort(A,n);
     // CountSort(A,n);
     // RecursiveMergeSort(A,0,n-1);
+    PrintArray(A, n);
     BinSort(A, n);
+    PrintArray(A, n);
     // ShellSort(A,n);
-    for(i=0; i<7; i++)
-        printf(" %d\n",A[i]);
-    printf("\n");
+
 
     return 0;
 
