@@ -41,7 +41,7 @@ void InsertionSort (int A[], int n)
         }
         A[j+1] = x;
     }
-    printf(" Array after Sorting :\n\n");
+    // printf(" Array after Sorting :\n\n");
 }
 
 // Selection Sort
@@ -57,7 +57,7 @@ void SelectionSort(int A[], int n)
         }
         Swap(&A[i], &A[k]);
     }
-    printf(" Array after Sorting :\n\n");
+    // printf(" Array after Sorting :\n\n");
 }
 
 // Quick Sort
@@ -227,6 +227,7 @@ void ShellSort(int A[], int n)
 // printing Arrys
 void PrintArray(int A[], int n)
 {
+    printf("\n");
     for(int i=0; i<n; i++){
         printf(" %d\t",A[i]);
     }
@@ -236,24 +237,76 @@ void PrintArray(int A[], int n)
 int main()
 {
     // int A[] = {8,2,6,21,7,9,18,65535}; // use in Quick Sort int highest element
-    int A[] = {8,2,6,21,7,9,18,25};
-    int i,n=8;
+    int value;
+    printf(" 1.) Use build In Array for Sorting:");
+    printf("\n 2.) Use Array Manually for Sorting:\n");
+    scanf(" %d",&value);
+    if (value == 1)
+    {
+        int A[] = {8,2,6,21,7,9,18,25};
+        int i,n=8;
+        printf("\n 1.) Bubble Sort ");
+        printf("\n 2.) Insertion Sort ");
+        printf("\n 3.) Selection Sort ");
+        printf("\n 4.) Quick Sort ");
+        printf("\n 5.) Iterative Merge Sort ");
+        printf("\n 6.) Recursive Merge Sort ");
+        printf("\n 7.) Count Sort ");
+        printf("\n 8.) Bin Sort ");
+        printf("\n 9.) Shell Sort ");
 
-    // BubbloweSort(A,n);
-    // InsertionSort(A, n);
-    // SelowectionSort(A, n);
-    // QuickSort(A,0,n-1);
+        printf("\n\n Array is:\n");
+        PrintArray(A, n);
+        int op;
+        printf("Enter the operation to be performed : ");
+        scanf("%d",&op);
+        switch (op) {
+            case 1:
+                BubbleSort(A,n);
+                PrintArray(A,n);
+                break;
+            case 2:
+                InsertionSort(A,n);
+                PrintArray(A,n);
+                break;
+            case 3:
+                SelectionSort(A,n);
+                PrintArray(A,n);
+                break;
+            case 4:
+                QuickSort(A,0,n-1);
+                PrintArray(A,n);
+                break;
+            case 5:
+                IterativeMergeSort(A,n);
+                PrintArray(A,n);
+                break;
+            case 6:
+                RecursiveMergeSort(A,0,n-1);
+                PrintArray(A,n);
+                break;
+            case 7:
+                CountSort(A,n);
+                PrintArray(A,n);
+            case 8:
+                BinSort(A,n);
+                PrintArray(A,n);
+                break;
+            case 9:
+                ShellSort(A,n);
+                PrintArray(A,n);
+                break;
+            default:
+                printf("Enter the right value ");
+                break;
+        }
+    }
+    else
+    {
 
-    // IterativeMergeSort(A,n);
-    // CountSort(A,n);
-    // RecursiveMergeSort(A,0,n-1);
-    PrintArray(A, n);
-    BinSort(A, n);
-    PrintArray(A, n);
-    // ShellSort(A,n);
+    }
+
 
 
     return 0;
-
-
 }
