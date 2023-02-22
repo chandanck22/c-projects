@@ -238,88 +238,15 @@ int main()
 {
     // int A[] = {8,2,6,21,7,9,18,65535}; // use in Quick Sort int highest element
     int value;
-    printf(" 1.) Use build In Array for Sorting:");
-    printf("\n 2.) Use Array Manually for Sorting:\n");
-    scanf(" %d",&value);
-    if (value == 1)
-    {
-        int A[] = {8,2,6,21,7,9,18,25};
-        int i,n=8;
-        printf("\n 1.) Bubble Sort ");
-        printf("\n 2.) Insertion Sort ");
-        printf("\n 3.) Selection Sort ");
-        printf("\n 4.) Quick Sort ");
-        printf("\n 5.) Iterative Merge Sort ");
-        printf("\n 6.) Recursive Merge Sort ");
-        printf("\n 7.) Count Sort ");
-        printf("\n 8.) Bin Sort ");
-        printf("\n 9.) Shell Sort ");
-
-        printf("\n\n Array is:\n");
-        PrintArray(A, n);
-        int op;
-        printf("Enter the operation to be performed : ");
-        scanf("%d",&op);
-        switch (op) {
-            case 1:
-                BubbleSort(A,n);
-                PrintArray(A,n);
-                break;
-            case 2:
-                InsertionSort(A,n);
-                PrintArray(A,n);
-                break;
-            case 3:
-                SelectionSort(A,n);
-                PrintArray(A,n);
-                break;
-            case 4:
-                QuickSort(A,0,n-1);
-                PrintArray(A,n);
-                break;
-            case 5:
-                IterativeMergeSort(A,n);
-                PrintArray(A,n);
-                break;
-            case 6:
-                RecursiveMergeSort(A,0,n-1);
-                PrintArray(A,n);
-                break;
-            case 7:
-                CountSort(A,n);
-                PrintArray(A,n);
-            case 8:
-                BinSort(A,n);
-                PrintArray(A,n);
-                break;
-            case 9:
-                ShellSort(A,n);
-                PrintArray(A,n);
-                break;
-            default:
-                printf("Enter the right value ");
-                break;
-        }
-    }
-    else
-    {
-        int *A, i, n, sum=0;
-        printf("\nEnter the size of Array: ");
-        scanf("%d",&n);
-
-        A = (int*)malloc(n*sizeof(int));
-
-        if(A == NULL){
-            printf("\n Memory not allocated.");
-            exit(0);
-        }
-        else{
-            printf("\nEnter the %d element: ",n);
-            for(i=0; i<n; ++i){
-                scanf("%d",A+i);
-                // sum += *(A+i);
-            }
-
+    while (1) {
+        printf(" 1.) Use build In Array for Sorting:");
+        printf("\n 2.) Use Array Manually for Sorting:");
+        printf("\n 3.) EXIT:\n");
+        scanf(" %d",&value);
+        if (value == 1)
+        {
+            int A[] = {8,2,6,21,7,9,18,25};
+            int i,n=8;
             printf("\n 1.) Bubble Sort ");
             printf("\n 2.) Insertion Sort ");
             printf("\n 3.) Selection Sort ");
@@ -372,14 +299,94 @@ int main()
                     PrintArray(A,n);
                     break;
                 default:
-                    printf("Enter the right value (1-9) ");
+                    printf("Enter the right value ");
                     break;
             }
-
         }
-        // printf("Sum %d",sum);
-        // free(n);
+        else if(value == 2)
+        {
+            int *A, i, n, sum=0;
+            printf("\nEnter the size of Array: ");
+            scanf("%d",&n);
+
+            A = (int*)malloc(n*sizeof(int));
+
+            if(A == NULL){
+                printf("\n Memory not allocated.");
+                exit(0);
+            }
+            else{
+                printf("\nEnter the %d element: ",n);
+                for(i=0; i<n; ++i){
+                    scanf("%d",A+i);
+                    // sum += *(A+i);
+                }
+
+                printf("\n 1.) Bubble Sort ");
+                printf("\n 2.) Insertion Sort ");
+                printf("\n 3.) Selection Sort ");
+                printf("\n 4.) Quick Sort ");
+                printf("\n 5.) Iterative Merge Sort ");
+                printf("\n 6.) Recursive Merge Sort ");
+                printf("\n 7.) Count Sort ");
+                printf("\n 8.) Bin Sort ");
+                printf("\n 9.) Shell Sort ");
+
+                printf("\n\n Array is:\n");
+                PrintArray(A, n);
+                int op;
+                printf("Enter the operation to be performed : ");
+                scanf("%d",&op);
+                switch (op) {
+                    case 1:
+                        BubbleSort(A,n);
+                        PrintArray(A,n);
+                        break;
+                    case 2:
+                        InsertionSort(A,n);
+                        PrintArray(A,n);
+                        break;
+                    case 3:
+                        SelectionSort(A,n);
+                        PrintArray(A,n);
+                        break;
+                    case 4:
+                        QuickSort(A,0,n-1);
+                        PrintArray(A,n);
+                        break;
+                    case 5:
+                        IterativeMergeSort(A,n);
+                        PrintArray(A,n);
+                        break;
+                    case 6:
+                        RecursiveMergeSort(A,0,n-1);
+                        PrintArray(A,n);
+                        break;
+                    case 7:
+                        CountSort(A,n);
+                        PrintArray(A,n);
+                    case 8:
+                        BinSort(A,n);
+                        PrintArray(A,n);
+                        break;
+                    case 9:
+                        ShellSort(A,n);
+                        PrintArray(A,n);
+                        break;
+                    default:
+                        printf("Enter the right value (1-9) ");
+                        break;
+                }
+
+            }
+            // printf("Sum %d",sum);
+            // free(n);
+        }
+        else{
+            exit(0);
+        }
     }
+
 
 
 
